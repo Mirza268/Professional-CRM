@@ -53,3 +53,34 @@ Follow these simple steps to spin up the enterprise CRM on your local environmen
 Make sure you have **Python 3.x** and `pip` installed on your machine. You can verify by running:
 ```bash
 python --version
+1. Clone the Repository
+Bash
+git clone [https://github.com/YOUR_USERNAME/crm-system.git](https://github.com/YOUR_USERNAME/crm-system.git)
+cd crm-system
+2. Install Required Dependencies
+The project relies completely on Flask for lightweight container routing. Run:
+
+Bash
+pip install flask
+3. Initialize & Run the Application
+Execute the master Python file. The system will automatically build the SQLite schema file (database.db) on its initial boot:
+
+Bash
+python app.py
+4. Open in Browser
+Once the terminal outputs Running on http://127.0.0.1:5000, open your web browser and navigate to the registration endpoint to create your first administrative root account:
+
+Plaintext
+[http://127.0.0.1:5000/register](http://127.0.0.1:5000/register)
+📂 Project Structure
+Plaintext
+crm_system/
+├── app.py              # Main application script containing routing and database initialization
+├── database.db         # SQLite database file (Automatically generated on first run)
+└── README.md           # Documentation and project manual
+🛡️ Security & Role Permissions Matrix
+Admin: Unrestricted global root access (Access to Master User Matrix, Audit Logs, and full financial operations).
+
+Manager: Full access to Sales, Clients, Marketing, and Task assignments (Restricted from core system security logs/user admin panels).
+
+Employee: Execution-focused access limited to managing active Tasks, Leads, and updating specific pipeline records.
