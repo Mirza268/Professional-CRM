@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head><title>CRM - Edit Lead</title></head>
+<body style="font-family:Arial; padding:40px;">
+    <h2>✏️ Modify Captured Metadata Parameters</h2>
+    <form method="POST" style="max-width:400px;">
+        Name Identifier: <input type="text" name="name" value="{{ lead[1] }}" style="width:100%; padding:8px; margin-bottom:10px;" required><br>
+        Email Route: <input type="email" name="email" value="{{ lead[2] }}" style="width:100%; padding:8px; margin-bottom:10px;"><br>
+        Phone Number: <input type="text" name="phone" value="{{ lead[3] }}" style="width:100%; padding:8px; margin-bottom:15px;"><br>
+        <button type="submit" style="padding:10px 20px; background:orange; color:white; border:none;">Update Repository Entity</button>
+    </form>
+</body>
+</html>

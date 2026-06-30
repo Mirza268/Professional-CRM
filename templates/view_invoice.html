@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head><title>CRM - Invoice View</title></head>
+<body style="font-family:sans-serif; padding:50px; background:#f4f6f9;">
+    <div style="background:white; padding:40px; max-width:600px; margin:0 auto; border-radius:8px; box-shadow:0 4px 15px rgba(0,0,0,0.05);">
+        <h2 style="color:#e74c3c;">INVOICE STATEMENT RECEIPT RECEIVABLE</h2><hr>
+        <p><strong>Invoice Serial Mapping Tracker ID:</strong> #INV-{{ inv[0] }}</p>
+        <p><strong>Billed Corporate Debtor Client:</strong> {{ inv[1] }}</p>
+        <p><strong>Billed Valuation Summary Total:</strong> ${{ inv[2] }} USD</p>
+        <p><strong>Financial Settlement Clearance Status Phase:</strong> <strong style="text-transform:uppercase;">{{ inv[3] }}</strong></p><hr>
+        <a href="/invoices">← Return to Invoices Matrix Dashboard Node</a>
+    </div>
+</body>
+</html>

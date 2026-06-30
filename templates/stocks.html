@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head><title>CRM - Stock Dispatcher</title></head>
+<body style="font-family:Arial; padding:40px;">
+    <h2>🔄 Supply Chain Warehouse Stock Replenishment Framework</h2>
+    <form method="POST" style="max-width:400px; background:#f4f6f9; padding:20px; border-radius:6px;">
+        <label>Select Target Product Entity:</label>
+        <select name="product_id" style="width:100%; padding:8px; margin-bottom:15px;">
+            {% for item in items %}
+            <option value="{{ item[0] }}">{{ item[1] }} (In Stock: {{ item[2] }})</option>
+            {% endfor %}
+        </select>
+        <label>Quantity Delta Factor (Use negative values to deduct stock):</label>
+        <input type="number" name="qty" placeholder="e.g. 50 or -10" style="width:100%; padding:8px; margin-bottom:15px;" required>
+        <button type="submit" style="padding:10px; background:#f39c12; color:white; width:100%; border:none;">Inject Stock Adjustments</button>
+    </form>
+</body>
+</html>

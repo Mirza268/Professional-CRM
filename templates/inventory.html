@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head><title>CRM - Catalog Vault</title><style>body{font-family:Arial; background:#f4f6f9; padding:30px;}table{width:100%; border-collapse:collapse; background:white;}th,td{padding:12px; border-bottom:1px solid #ddd;}th{background:#1abc9c; color:white;}</style></head>
+<body>
+    <h2>📦 Hardware Asset Catalog & Product Stock Vault</h2>
+    <a href="/inventory/add" style="padding:10px 15px; background:#1abc9c; color:white; text-decoration:none; border-radius:4px;">+ Register Product Entity</a> | 
+    <a href="/inventory/stock" style="padding:10px 15px; background:#f39c12; color:white; text-decoration:none; border-radius:4px;">Adjust Real Stock Levels</a><br><br>
+    <table>
+        <tr><th>ID Code</th><th>Nomenclature Label</th><th>SKU Code Token</th><th>Unit Price Cost</th><th>Current Warehouse Stock Counter</th><th>Actions</th></tr>
+        {% for item in items %}
+        <tr>
+            <td>#PRD-{{ item[0] }}</td>
+            <td><strong>{{ item[1] }}</strong></td>
+            <td><code>{{ item[2] }}</code></td>
+            <td>${{ item[3] }}</td>
+            <td><strong style="color:{% if item[4] < 5 %}red{% else %}green{% endif %};">{{ item[4] }} units available</strong></td>
+            <td><a href="/inventory/edit/{{ item[0] }}">Modify Valuation</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

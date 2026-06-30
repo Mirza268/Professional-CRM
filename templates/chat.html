@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head><title>CRM - Chat</title><style>body{font-family:Arial; background:#f4f6f9; padding:30px;}.chat-box{background:white; padding:20px; height:300px; overflow-y:scroll; border:1px solid #ddd; margin-bottom:10px;}</style></head>
+<body>
+    <h2>💬 Internal Messaging Room & Communication Thread System</h2>
+    <div class="chat-box">
+        {% for msg in messages %}
+        <p style="border-bottom:1px solid #f9f9f9; padding-bottom:5px;"><strong>User Matrix ID Node #{{ msg[1] }}:</strong> {{ msg[2] }} <small style="color:#888;">({{ msg[3] }})</small></p>
+        {% endfor %}
+    </div>
+    <form action="/chat/send" method="POST">
+        <input type="text" name="text" placeholder="Type communication payload broadcast here..." style="width:80%; padding:10px;" required>
+        <button type="submit" style="padding:10px 20px; background:#2c3e50; color:white; border:none; cursor:pointer;">Broadcast Message</button>
+    </form>
+    <br><hr>
+    <p><a href="/documents">📂 Open Shared Corporate Document Storage Drive Channel</a></p>
+</body>
+</html>

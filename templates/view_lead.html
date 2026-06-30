@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head><title>CRM - Lead Profile</title></head>
+<body style="font-family:Arial; padding:40px;">
+    <h2>👤 Lead Context Information Sheet: {{ lead[1] }}</h2>
+    <div style="background:white; padding:20px; border:1px solid #ddd; max-width:500px;">
+        <p><strong>System Identification Hash ID:</strong> #LD-{{ lead[0] }}</p>
+        <p><strong>Network Mailing Route:</strong> {{ lead[2] }}</p>
+        <p><strong>Mobile Communication Channel:</strong> {{ lead[3] }}</p>
+        <p><strong>Pipeline Status Phase:</strong> <code>{{ lead[4] }}</code></p>
+    </div>
+    <br><a href="/leads">← Return to Master Directory</a>
+</body>
+</html>

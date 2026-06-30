@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head><title>CRM - Quotes Hub</title><style>body{font-family:Arial; background:#f4f6f9; padding:30px;}table{width:100%; border-collapse:collapse; background:white;}th,td{padding:12px; border-bottom:1px solid #ddd;}th{background:#2c3e50; color:white;}</style></head>
+<body>
+    <h2>📄 Commercial Proposals & Client Quotation Directory</h2>
+    <a href="/quotes/create" style="padding:10px 15px; background:#2c3e50; color:white; text-decoration:none;">+ Mint New Price Quotation Sheet</a><br><br>
+    <table>
+        <tr><th>Quote Code</th><th>Target Client Account</th><th>Estimated Quote Valuation</th><th>Validity Time Target Deadlines</th><th>Action</th></tr>
+        {% for q in quotes %}
+        <tr>
+            <td>#QUOT-{{ q[0] }}</td>
+            <td><strong>{{ q[1] }}</strong></td>
+            <td>${{ q[2] }}</td>
+            <td><code>{{ q[3] }}</code></td>
+            <td><a href="/quotes/view/{{ q[0] }}">View Proposal Receipt Document</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

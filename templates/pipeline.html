@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head><title>CRM - Pipeline Board</title><style>body{font-family:Arial; background:#f4f6f9; padding:30px;}table{width:100%; border-collapse:collapse; background:white;}th,td{padding:12px; border-bottom:1px solid #ddd;}th{background:#9b59b6; color:white;}</style></head>
+<body>
+    <h2>📈 Active Capital Commercial Pipeline Deal Board</h2>
+    <a href="/deals/add" style="padding:10px 15px; background:#9b59b6; color:white; text-decoration:none;">+ Inject New Deal Entity</a><br><br>
+    <table>
+        <tr><th>ID Flag</th><th>Deal Value Objective</th><th>Financial Evaluation Gross</th><th>Pipeline Structural Stage</th><th>Operations Matrix</th></tr>
+        {% for deal in deals %}
+        <tr>
+            <td>#DEAL-{{ deal[0] }}</td>
+            <td><strong>{{ deal[1] }}</strong></td>
+            <td>${{ deal[2] }}</td>
+            <td><code>{{ deal[3] }}</code></td>
+            <td>
+                <a href="/deals/move/{{ deal[0] }}">Shift Phase Stage</a> | 
+                <a href="/deals/delete/{{ deal[0] }}" style="color:red;">Drop Deal</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

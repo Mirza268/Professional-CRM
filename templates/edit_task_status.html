@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head><title>CRM - Shift Task Phase</title></head>
+<body style="font-family:Arial; padding:40px;">
+    <div style="background:white; padding:30px; max-width:400px; margin:0 auto; border:1px solid #ddd;">
+        <h3>Modify Lifecycle Phase Action Route for #TSK-{{ task[0] }}</h3>
+        <form method="POST">
+            <label>Current Execution Phase Status:</label>
+            <select name="status" style="width:100%; padding:8px; margin-bottom:15px;">
+                <option value="Pending" {% if task[5]=='Pending' %}selected{% endif %}>Pending Task Objective</option>
+                <option value="In Progress" {% if task[5]=='In Progress' %}selected{% endif %}>In Progress / Active Execution</option>
+                <option value="Completed" {% if task[5]=='Completed' %}selected{% endif %}>Completed & Archived Execution Node</option>
+            </select>
+            <button type="submit" style="background:#e67e22; color:white; padding:10px; width:100%; border:none;">Update Operational Trackers</button>
+        </form>
+    </div>
+</body>
+</html>
