@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+<title>CRM - Edit Lead</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8525653404694793"
+crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div id="bg3d" aria-hidden="true"></div>
+
+    <div class="card">
+        <h2>✏️ Edit Lead</h2>
+        <form method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <label>Name <span class="required">*</span></label>
+            <input type="text" name="name" value="{{ lead['name'] }}" required>
+            <label>Email</label>
+            <input type="email" name="email" value="{{ lead['email'] or '' }}">
+            <label>Phone</label>
+            <input type="text" name="phone" value="{{ lead['phone'] or '' }}">
+            <button type="submit">Update Lead</button>
+        </form>
+        <a href="/leads" class="back">← Back to Leads</a>
+    </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="{{ url_for('static', filename='js/bg3d.js') }}"></script>
+</body>
+</html>

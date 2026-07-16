@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+<title>CRM - Quotes</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8525653404694793"
+crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div id="bg3d" aria-hidden="true"></div>
+
+    <div class="container">
+        <h2>📄 Quotes & Proposals</h2>
+        <a href="/quotes/create" class="btn">+ Create Quote</a>
+        {% if quotes %}
+        <table>
+            <tr><th>ID</th><th>Client</th><th>Amount</th><th>Valid Until</th><th>Created By</th><th>Actions</th></tr>
+            {% for q in quotes %}
+            <tr>
+                <td>#{{ q['id'] }}</td>
+                <td><strong>{{ q['client_name'] }}</strong></td>
+                <td>${{ "%.2f" | format(q['amount'] / 100) }}</td>
+                <td class="valid">{{ q['valid_until'] }}</td>
+                <td class="creator">{{ q['creator'] or 'System' }}</td>
+                <td class="actions"><a href="/quotes/view/{{ q['id'] }}">View</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <div class="empty"><p>No quotes found. <a href="/quotes/create">Create one →</a></p></div>
+        {% endif %}
+        <a href="/dashboard" class="back">← Back to Dashboard</a>
+    </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="{{ url_for('static', filename='js/bg3d.js') }}"></script>
+</body>
+</html>

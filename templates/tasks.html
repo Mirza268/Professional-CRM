@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+<title>CRM - Tasks</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8525653404694793"
+crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div id="bg3d" aria-hidden="true"></div>
+
+    <div class="container">
+        <h2>📋 Task Board</h2>
+        <a href="/tasks/create" class="btn btn-add">+ Create Task</a>
+        <a href="/tasks/archive" class="btn btn-archive">View Archive</a>
+        {% if tasks %}
+        <table>
+            <tr><th>ID</th><th>Title</th><th>Due Date</th><th>Priority</th><th>Status</th><th>Assigned</th><th>Actions</th></tr>
+            {% for task in tasks %}
+            <tr>
+                <td>#{{ task['id'] }}</td>
+                <td><strong>{{ task['title'] }}</strong></td>
+                <td class="{% if task['due_date'] and task['due_date'] < '2026-07-10' %}due-soon{% else %}due-ok{% endif %}">{{ task['due_date'] or '—' }}</td>
+                <td><span class="badge badge-{{ task['priority'].lower() }}">{{ task['priority'] }}</span></td>
+                <td><span class="status status-{{ task['status'].lower().replace(' ', '-') }}">{{ task['status'] }}</span></td>
+                <td>{{ task['assignee_name'] or 'Unassigned' }}</td>
+                <td class="actions">
+                    <a href="/tasks/view/{{ task['id'] }}">View</a>
+                    <a href="/tasks/status/{{ task['id'] }}">Status</a>
+                    <form method="POST" action="/tasks/delete/{{ task['id'] }}" style="display:inline;" onsubmit="return confirm('Delete task {{ task['title'] }}?');">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <div class="empty"><p>No tasks found. <a href="/tasks/create">Create one →</a></p></div>
+        {% endif %}
+        <a href="/dashboard" class="back">← Back to Dashboard</a>
+    </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="{{ url_for('static', filename='js/bg3d.js') }}"></script>
+</body>
+</html>

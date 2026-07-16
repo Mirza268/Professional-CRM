@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+<title>CRM - Audit Logs</title>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8525653404694793"
+crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div id="bg3d" aria-hidden="true"></div>
+
+    <div class="container">
+        <h2>🛡️ System Audit Logs</h2>
+        {% if logs %}
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>User</th>
+                <th>Action</th>
+                <th>Timestamp</th>
+            </tr>
+            {% for log in logs %}
+            <tr>
+                <td>#{{ log['id'] }}</td>
+                <td class="user">{{ log['username'] or 'System' }}</td>
+                <td class="action">{{ log['action'] }}</td>
+                <td class="timestamp">{{ log['timestamp'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <div class="empty">
+            <p>No audit logs found.</p>
+        </div>
+        {% endif %}
+        <a href="/dashboard" class="back">← Back to Dashboard</a>
+    </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="{{ url_for('static', filename='js/bg3d.js') }}"></script>
+</body>
+</html>
