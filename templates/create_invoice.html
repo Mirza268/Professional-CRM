@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+<title>CRM - Create Invoice</title>
+</head>
+<body>
+<div id="bg3d" aria-hidden="true"></div>
+
+    <div class="card">
+        <h2>🧾 Create New Invoice</h2>
+        <form method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <label>Client / Organization Name</label>
+            <input type="text" name="client" placeholder="e.g. Acme Corp" required>
+
+            <label>Invoice Amount ($)</label>
+            <input type="number" step="0.01" name="amount" placeholder="0.00" required>
+
+            <button type="submit">Generate Invoice</button>
+        </form>
+        <a href="/invoices" class="back">← Back to Invoices</a>
+    </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="{{ url_for('static', filename='js/bg3d.js') }}"></script>
+</body>
+</html>

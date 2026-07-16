@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+<title>CRM - Financial Summary</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div id="bg3d" aria-hidden="true"></div>
+
+    <div class="container">
+        <h2>📊 Financial Summary</h2>
+        <div class="grid">
+            <div class="card paid">
+                <div class="label">Total Revenue</div>
+                <div class="amount">${{ "%.2f" | format(total_paid / 100) }}</div>
+            </div>
+            <div class="card unpaid">
+                <div class="label">Outstanding</div>
+                <div class="amount">${{ "%.2f" | format(total_unpaid / 100) }}</div>
+            </div>
+            <div class="card overdue">
+                <div class="label">Overdue</div>
+                <div class="amount">${{ "%.2f" | format(total_overdue / 100) }}</div>
+            </div>
+        </div>
+        <a href="/invoices" class="back">← Back to Invoices</a>
+    </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="{{ url_for('static', filename='js/bg3d.js') }}"></script>
+</body>
+</html>

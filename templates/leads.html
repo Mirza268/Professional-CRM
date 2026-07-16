@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRM - Leads</title>
+</head>
+<body>
+<div id="bg3d" aria-hidden="true"></div>
+
+    <div class="container">
+        <h2>👥 Leads Management</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                <div class="flash flash-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        {% endwith %}
+        <a href="/leads/add" class="btn">+ Add New Lead</a>
+        {% if leads %}
+        <table>
+            <tr><th>ID</th><th>Name</th><th>Email</th><th>Status</th><th>Actions</th></tr>
+            {% for lead in leads %}
+            <tr>
+                <td>#{{ lead['id'] }}</td>
+                <td><strong>{{ lead['name'] }}</strong></td>
+                <td>{{ lead['email'] or '—' }}</td>
+                <td><span class="badge badge-{{ lead['status'].lower() }}">{{ lead['status'] }}</span></td>
+                <td class="actions">
+                    <a href="/leads/view/{{ lead['id'] }}">View</a>
+                    <a href="/leads/edit/{{ lead['id'] }}">Edit</a>
+                    <a href="/leads/status/{{ lead['id'] }}">Status</a>
+                    <form method="POST" action="/leads/delete/{{ lead['id'] }}" style="display:inline;" onsubmit="return confirm('Delete lead {{ lead['name'] }}?');">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <div class="empty"><p>No leads found. <a href="/leads/add">Create your first lead →</a></p></div>
+        {% endif %}
+        <a href="/dashboard" class="back">← Back to Dashboard</a>
+    </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="{{ url_for('static', filename='js/bg3d.js') }}"></script>
+</body>
+</html>

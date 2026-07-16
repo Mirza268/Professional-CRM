@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+<title>CRM - Inventory</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div id="bg3d" aria-hidden="true"></div>
+
+    <div class="container">
+        <h2>📦 Product Inventory</h2>
+        <a href="/inventory/add" class="btn btn-add">+ Add Product</a>
+        <a href="/inventory/stock" class="btn btn-stock">Adjust Stock</a>
+        {% if items %}
+        <table>
+            <tr><th>ID</th><th>Name</th><th>SKU</th><th>Price</th><th>Stock</th><th>Actions</th></tr>
+            {% for item in items %}
+            <tr>
+                <td>#{{ item['id'] }}</td>
+                <td><strong>{{ item['name'] }}</strong></td>
+                <td><code>{{ item['sku'] }}</code></td>
+                <td>${{ "%.2f" | format(item['price'] / 100) }}</td>
+                <td class="{% if item['stock'] < 5 %}stock-low{% else %}stock-ok{% endif %}">{{ item['stock'] }} units</td>
+                <td class="actions"><a href="/inventory/edit/{{ item['id'] }}">Edit</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <div class="empty"><p>No products in inventory. <a href="/inventory/add">Add one →</a></p></div>
+        {% endif %}
+        <a href="/dashboard" class="back">← Back to Dashboard</a>
+    </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="{{ url_for('static', filename='js/bg3d.js') }}"></script>
+</body>
+</html>

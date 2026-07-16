@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+<title>CRM - Payments Audit</title>
+</head>
+<body>
+<div id="bg3d" aria-hidden="true"></div>
+
+    <div class="container">
+        <h2>📜 Payment Audit Log</h2>
+        {% if records %}
+        <ul>
+            {% for r in records %}
+            <li>
+                ✅ <strong>Invoice #{{ r['id'] }}</strong> — {{ r['client_name'] }} — 
+                <strong>${{ "%.2f" | format(r['amount'] / 100) }}</strong> 
+                <span style="color:#888;float:right;">Paid: {{ r['paid_at'] or 'N/A' }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <div class="empty"><p>No paid invoices found.</p></div>
+        {% endif %}
+        <a href="/invoices" class="back">← Back to Billing</a>
+    </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="{{ url_for('static', filename='js/bg3d.js') }}"></script>
+</body>
+</html>

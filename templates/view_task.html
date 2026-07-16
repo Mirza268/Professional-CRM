@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+<title>CRM - Task #{{ task['id'] }}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div id="bg3d" aria-hidden="true"></div>
+
+    <div class="container">
+        <div class="card">
+            <h2>📋 {{ task['title'] }}</h2>
+            <div class="field">
+                <div class="label">Description</div>
+                <div class="value description">{{ task['description'] or 'No description provided.' }}</div>
+            </div>
+            <div class="field">
+                <div class="label">Due Date</div>
+                <div class="value">{{ task['due_date'] or 'Not set' }}</div>
+            </div>
+            <div class="field">
+                <div class="label">Priority</div>
+                <div class="value"><span class="badge badge-{{ task['priority'].lower() }}">{{ task['priority'] }}</span></div>
+            </div>
+            <div class="field">
+                <div class="label">Status</div>
+                <div class="value"><span class="status status-{{ task['status'].lower().replace(' ', '-') }}">{{ task['status'] }}</span></div>
+            </div>
+            <div class="field">
+                <div class="label">Assigned To</div>
+                <div class="value">{{ task['assignee_name'] or 'Unassigned' }}</div>
+            </div>
+            <div class="field">
+                <div class="label">Created By</div>
+                <div class="value">{{ task['creator_name'] or 'Unknown' }}</div>
+            </div>
+        </div>
+        <a href="/tasks" class="back">← Back to Tasks</a>
+    </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="{{ url_for('static', filename='js/bg3d.js') }}"></script>
+</body>
+</html>

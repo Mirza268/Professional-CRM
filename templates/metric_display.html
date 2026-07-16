@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+<title>CRM - {{ title }}</title>
+</head>
+<body>
+<div id="bg3d" aria-hidden="true"></div>
+
+    <div class="card">
+        <h3>{{ title }}</h3>
+        <div class="value">{{ value }}</div>
+        <a href="/dashboard" class="back">Back to Dashboard</a>
+    </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="{{ url_for('static', filename='js/bg3d.js') }}"></script>
+</body>
+</html>

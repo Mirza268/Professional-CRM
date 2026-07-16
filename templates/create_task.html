@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+<title>CRM - Create Task</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div id="bg3d" aria-hidden="true"></div>
+
+    <div class="card">
+        <h2>📋 Create Task</h2>
+        <form method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <label>Title <span class="required">*</span></label>
+            <input type="text" name="title" placeholder="e.g. Follow up with client" required>
+            <label>Description</label>
+            <textarea name="description" rows="3" placeholder="Task details..."></textarea>
+            <label>Due Date <span class="required">*</span></label>
+            <input type="date" name="due_date" required>
+            <label>Priority</label>
+            <select name="priority">
+                <option value="Low">Low</option>
+                <option value="Medium" selected>Medium</option>
+                <option value="High">High 🔥</option>
+            </select>
+            <label>Assign To</label>
+            <select name="assigned_to">
+                <option value="">— Myself —</option>
+                {% for user in users %}
+                <option value="{{ user['id'] }}">{{ user['username'] }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Create Task</button>
+        </form>
+        <a href="/tasks" class="back">← Back to Tasks</a>
+    </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="{{ url_for('static', filename='js/bg3d.js') }}"></script>
+</body>
+</html>

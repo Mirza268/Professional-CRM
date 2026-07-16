@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+<title>CRM - Team Chat</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div id="bg3d" aria-hidden="true"></div>
+
+    <div class="container">
+        <h2>💬 Team Chat</h2>
+        <div class="chat-box">
+            {% if messages %}
+            {% for msg in messages %}
+            <div class="message {% if msg['sender_id'] == session.user_id %}own{% else %}other{% endif %}">
+                <div class="sender">{{ msg['sender_name'] or 'Unknown' }}</div>
+                <div class="text">{{ msg['text'] }}</div>
+                <div class="time">{{ msg['timestamp'][:16] if msg['timestamp'] else '' }}</div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="empty"><p>No messages yet. Start the conversation!</p></div>
+            {% endif %}
+        </div>
+        <form action="/chat/send" method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <div class="input-area">
+                <input type="text" name="text" placeholder="Type your message..." maxlength="1000" required autofocus>
+                <button type="submit">Send</button>
+            </div>
+        </form>
+        <a href="/dashboard" class="back">← Back to Dashboard</a>
+    </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="{{ url_for('static', filename='js/bg3d.js') }}"></script>
+</body>
+</html>
